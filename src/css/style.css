@@ -1,7 +1,3 @@
-.toto {
-  color: aquamarine;
-}
-
 html {
   font-family: "Roboto", sans-serif;
   display: flex;
@@ -33,6 +29,27 @@ header {
   text-decoration: none;
   font-size: 24px;
   font-weight: 500;
+}
+
+.mainContainer {
+  display: flex;
+}
+
+.dashboardHeader {
+  margin: 40px 0 0 90px;
+}
+.dashboardHeader h1 {
+  color: black;
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+.dashboardHeader .firstName {
+  color: #FF0101;
+}
+.dashboardHeader h2 {
+  font-size: 18px;
+  font-weight: 400;
 }
 
 aside p {
