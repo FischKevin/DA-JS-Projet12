@@ -37,6 +37,12 @@ header {
   display: flex;
 }
 
+.firstBottomGraph {
+  background-color: #FF0000;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+}
+
 .dashboardHeader {
   margin: 40px 0 0 90px;
 }
@@ -63,6 +69,10 @@ header {
 .bottomGraphs {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  gap: 3%;
+  margin-top: 30px;
+  height: 263px;
 }
 
 .topGraph {
@@ -114,11 +124,12 @@ header {
   margin-bottom: 40px;
 }
 
-aside p {
+.mainContainer aside p {
   color: white;
   position: absolute;
   bottom: 30px;
   rotate: 270deg;
+  width: 182px;
 }
 
 aside .iconGroup {
