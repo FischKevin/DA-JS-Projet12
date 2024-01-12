@@ -4,6 +4,8 @@ html {
  justify-content: center;
 
  body {
-  width: 1024px;
+  min-width: 1024px;
+  width: 1440px;
+  min-height: 768px;
  }
 }

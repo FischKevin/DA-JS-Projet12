@@ -4,7 +4,9 @@ html {
   justify-content: center;
 }
 html body {
-  width: 1024px;
+  min-width: 1024px;
+  width: 1440px;
+  min-height: 768px;
 }
 
 header {
@@ -50,6 +52,66 @@ header {
 .dashboardHeader h2 {
   font-size: 18px;
   font-weight: 400;
+}
+
+.mainGraphs {
+  margin-left: 90px;
+  margin-top: 60px;
+  width: 817px;
+}
+
+.bottomGraphs {
+  display: flex;
+  flex-direction: row;
+}
+
+.topGraph {
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.0196078431);
+  background-color: #FBFBFB;
+  border-radius: 6px;
+  width: 100%;
+  height: 320px;
+  padding: 0 10px;
+}
+.topGraph h2 {
+  font-size: 15px;
+  font-weight: 700;
+  padding: 20px 0 0 20px;
+}
+.topGraph .recharts-wrapper {
+  position: absolute;
+  top: 55px;
+}
+.topGraph .recharts-yAxis {
+  width: 100%;
+  height: 110%;
+}
+.topGraph .recharts-default-legend {
+  bottom: 70px;
+  position: absolute;
+  right: 5px;
+}
+.topGraph .recharts-default-legend .recharts-legend-item {
+  margin-left: 30px !important;
+}
+.topGraph .recharts-default-legend .recharts-legend-item svg {
+  margin-right: 10px !important;
+}
+.topGraph .recharts-legend-item-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #74798C !important;
+}
+.topGraph .topGraphTooltip {
+  color: white;
+  background-color: #E60000;
+  text-align: center;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.topGraph .topGraphTooltip .topTooltip {
+  margin-bottom: 40px;
 }
 
 aside p {
