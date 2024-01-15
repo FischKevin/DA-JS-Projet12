@@ -112,8 +112,7 @@ function DashboardFirstBottomGraph() {
   };
 
   return (
-    <div className='firstBottomGraph'>
-      <ResponsiveContainer width="100%" height={263}>
+      <ResponsiveContainer className="firstBottomGraph" width="100%" height={263}>
       <AreaChart data={averageSessionsDataWithPadding} margin={{ top: 50, right: 0, left: 0, bottom: 25 }}>
           <text x="35%" y="40" textAnchor="middle" fill="#fff" fontSize={15} fontWeight="500" opacity={0.5}>
             Durée moyenne <tspan x="31%" dy="20">des sessions</tspan>
@@ -145,7 +144,6 @@ function DashboardFirstBottomGraph() {
           />
         </AreaChart>
       </ResponsiveContainer>
-    </div>
   );
 }
 

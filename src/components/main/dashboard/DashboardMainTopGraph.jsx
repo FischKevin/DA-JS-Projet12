@@ -109,6 +109,7 @@ function DashboardMainTopGraph() {
             <Scatter dataKey="cnt" fill="red" />
           </BarChart>
         </ResponsiveContainer>
+        
       </div>
   );
 }
