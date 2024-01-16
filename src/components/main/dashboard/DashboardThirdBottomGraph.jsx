@@ -9,9 +9,6 @@ const todayScore = mockData["12"].userInfo.todayScore;
 // Création des données pour le graphique
 const data = [{ name: 'Score', value: todayScore * 100, fill: '#FF0000' }];
 
-// Calcul du pourcentage
-// const percentage = (data[0].value * 100).toFixed(0);
-
 return (
   <div className='thirdBottomGraph' style={{ background: '#FBFBFB' }}>
     <ResponsiveContainer width="100%" height={263}>

@@ -3,20 +3,42 @@ import PropTypes from 'prop-types';
 import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer, Rectangle } from 'recharts';
 import mockData from '/src/mockData.json';
 
+function DashboardFirstBottomGraph() {
+
+// Convert a day number to a day name
+const daysTranslations = {
+  1: "L",
+  2: "M",
+  3: "M",
+  4: "J",
+  5: "V",
+  6: "S",
+  7: "D"
+};
+
 // Get mocked data
-const averageSessionsData = mockData["12"].averageSessions.sessions.map(session => {
-  const daysOfWeek = ["L", "M", "Me", "J", "V", "S", "D"];
+const averageSessionsData = Object.values(mockData["12"].averageSessions.sessions).map(session => {
   return {
-    day: daysOfWeek[session.day - 1],
+    dayNumber: session.day,
     sessionLength: session.sessionLength
   };
 });
+
+// Get the first and last values to add fictive points
+const LValue = mockData["12"].averageSessions.sessions.find(session => session.day === 1).sessionLength;
+const DValue = mockData["12"].averageSessions.sessions.find(session => session.day === 7).sessionLength;
+
+const averageSessionsDataWithPadding = [
+  { dayNumber: 'Start', sessionLength: LValue },
+  ...averageSessionsData,
+  { dayNumber: 'End', sessionLength: DValue }
+];
 
 // Define the custom tooltip
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length && label !== 'Start' && label !== 'End') {
     return (
-      <div style={{ backgroundColor: '#fff', color: '#000', padding: '5px', border: '1px solid #ccc' }}>
+      <div style={{ backgroundColor: '#fff', color: '#000', padding: '5px', border: '1px solid #ccc', fontSize:'10px', fontWeigh:'500' }}>
         {`${payload[0].value} min`}
       </div>
     );
@@ -29,12 +51,13 @@ CustomTooltip.propTypes = {
   payload: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.number.isRequired,
   })),
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 // Define the custom tick
 const CustomTick = (props) => {
-  const { x, y, payload, index } = props;
+  const { x, y, payload } = props;
+  const dayName = daysTranslations[payload.value] || ''; 
   return (
     <g transform={`translate(${x},${y+5})`}>
       <text 
@@ -46,8 +69,8 @@ const CustomTick = (props) => {
         opacity={0.5} 
         fontSize="12px" 
         fontWeight="500"
-        key={`tick-${payload.value}-${index}`}> 
-        {payload.value}
+        >  
+        {dayName}
       </text>
     </g>
   );
@@ -94,36 +117,25 @@ CustomActiveDot.propTypes = {
   cy: PropTypes.number,
 };
 
-function DashboardFirstBottomGraph() {
-  const daysOfWeek = ["L", "M", "Me", "J", "V", "S", "D"];
-  // Modify the data to add fictive points at the beginning and the end
-  const averageSessionsDataWithPadding = [
-    { day: 'Start', sessionLength: 0 }, // Fictive point to start
-    ...averageSessionsData,
-    { day: 'End', sessionLength: 0 }, // Fictive point to end
-  ];
-
-  // Define the custom tick formatter
-  const customTickFormatter = (value) => {
-    if (value === 'Start' || value === 'End') {
-      return '';
-    }
-    return value;
+// Define the custom tick formatter
+const formatTick = (tickItem) => {
+  return daysTranslations[tickItem] || '';
   };
 
+
   return (
-      <ResponsiveContainer className="firstBottomGraph" width="100%" height={263}>
+      <ResponsiveContainer className="firstBottomGraph" width="1%" height={263}>
         <AreaChart data={averageSessionsDataWithPadding} margin={{ top: 50, right: 0, left: 0, bottom: 25 }}>
             <text x="35%" y="40" textAnchor="middle" fill="#fff" fontSize={15} fontWeight="500" opacity={0.5}>
               Durée moyenne <tspan x="31%" dy="20">des sessions</tspan>
             </text>
             <XAxis 
-              dataKey="day"
+              dataKey="dayNumber"
               axisLine={false}
               tickLine={false}
               tick={<CustomTick />}
-              tickFormatter={customTickFormatter}
-              ticks={daysOfWeek}
+              tickFormatter={formatTick}
+              ticks={[1, 2, 3, 4, 5, 6, 7]}
               interval={0}
               scale="point"
             />
@@ -138,7 +150,7 @@ function DashboardFirstBottomGraph() {
               type="monotone"
               dataKey="sessionLength"
               stroke="url(#strokeGradient)"
-              strokeWidth={2}
+              strokeWidth={3}
               fillOpacity={0}
               activeDot={<CustomActiveDot />}
             />
