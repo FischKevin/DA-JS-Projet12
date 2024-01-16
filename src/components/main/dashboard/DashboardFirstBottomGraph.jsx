@@ -113,35 +113,35 @@ function DashboardFirstBottomGraph() {
 
   return (
       <ResponsiveContainer className="firstBottomGraph" width="100%" height={263}>
-      <AreaChart data={averageSessionsDataWithPadding} margin={{ top: 50, right: 0, left: 0, bottom: 25 }}>
-          <text x="35%" y="40" textAnchor="middle" fill="#fff" fontSize={15} fontWeight="500" opacity={0.5}>
-            Durée moyenne <tspan x="31%" dy="20">des sessions</tspan>
-          </text>
-          <XAxis 
-            dataKey="day"
-            axisLine={false}
-            tickLine={false}
-            tick={<CustomTick />}
-            tickFormatter={customTickFormatter}
-            ticks={daysOfWeek}
-            interval={0}
-            scale="point"
-          />
-          <Tooltip content={<CustomTooltip />} cursor={<CustomCursor />} />
-          <defs>
-            <linearGradient id="strokeGradient" x1="0" y1="0" x2="100%" y2="0">
-              <stop offset="0%" stopColor="#ffffff" stopOpacity={0.1} />
-              <stop offset="100%" stopColor="#ffffff" stopOpacity={1} />
-            </linearGradient>
-          </defs>
-          <Area
-            type="monotone"
-            dataKey="sessionLength"
-            stroke="url(#strokeGradient)"
-            strokeWidth={2}
-            fillOpacity={0}
-            activeDot={<CustomActiveDot />}
-          />
+        <AreaChart data={averageSessionsDataWithPadding} margin={{ top: 50, right: 0, left: 0, bottom: 25 }}>
+            <text x="35%" y="40" textAnchor="middle" fill="#fff" fontSize={15} fontWeight="500" opacity={0.5}>
+              Durée moyenne <tspan x="31%" dy="20">des sessions</tspan>
+            </text>
+            <XAxis 
+              dataKey="day"
+              axisLine={false}
+              tickLine={false}
+              tick={<CustomTick />}
+              tickFormatter={customTickFormatter}
+              ticks={daysOfWeek}
+              interval={0}
+              scale="point"
+            />
+            <Tooltip content={<CustomTooltip />} cursor={<CustomCursor />} />
+            <defs>
+              <linearGradient id="strokeGradient" x1="0" y1="0" x2="100%" y2="0">
+                <stop offset="0%" stopColor="#ffffff" stopOpacity={0.1} />
+                <stop offset="100%" stopColor="#ffffff" stopOpacity={1} />
+              </linearGradient>
+            </defs>
+            <Area
+              type="monotone"
+              dataKey="sessionLength"
+              stroke="url(#strokeGradient)"
+              strokeWidth={2}
+              fillOpacity={0}
+              activeDot={<CustomActiveDot />}
+            />
         </AreaChart>
       </ResponsiveContainer>
   );

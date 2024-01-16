@@ -31,7 +31,7 @@ const CustomTickXAxis = (props) => {
 
   return (
     <g transform={`translate(${x},${y + 10})`}>
-      <text x={0} y={-3} dy={20} textAnchor="middle" fill="#666">
+      <text x={0} y={-3} dy={20} textAnchor="middle" fill="#9B9EAC">
         {payload.value}
       </text>
     </g>
@@ -50,7 +50,7 @@ const CustomTickYAxis = (props) => {
 
   return (
     <g transform={`translate(${x},${y})`}>
-      <text x={0} y={3} dx={50} textAnchor="end" fill="#666">
+      <text x={0} y={3} dx={50} textAnchor="end" fill="#9B9EAC">
         {payload.value}
       </text>
     </g>
@@ -87,7 +87,7 @@ CustomTooltip.propTypes = {
 function DashboardMainTopGraph() {
   return (
       <div className='topGraph'>
-        <ResponsiveContainer  width="100%" height={180}>
+        <ResponsiveContainer  width="95%" height={180} style={{ margin: '0 auto' }}>
         <h2>Activité quotidienne</h2>
           <BarChart data={dataForChart}>
           {yAxisTicks.map((tick, index) => (
