@@ -1,10 +1,10 @@
 import React from "react";
 import IconButton from "./IconsButton";
 
-import BikeIcon from "/src/assets/icons/bike.png";
-import FitnessIcon from "/src/assets/icons/fitness.png";
-import SwimIcon from "/src/assets/icons/swim.png";
-import YogaIcon from "/src/assets/icons/yoga.png";
+import BikeIcon from "/src/assets/icons/sideMenu/bike.png";
+import FitnessIcon from "/src/assets/icons/sideMenu/fitness.png";
+import SwimIcon from "/src/assets/icons/sideMenu/swim.png";
+import YogaIcon from "/src/assets/icons/sideMenu/yoga.png";
 
 function Icons() {
   return (

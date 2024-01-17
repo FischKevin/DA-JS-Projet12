@@ -5,8 +5,9 @@ html {
 }
 html body {
   min-width: 1024px;
-  width: 1440px;
+  width: 100vw;
   min-height: 768px;
+  margin: 0;
 }
 
 header {
@@ -37,6 +38,52 @@ header {
   display: flex;
 }
 
+.card {
+  background-color: #FBFBFB;
+  display: flex;
+  border-radius: 6px;
+}
+.card .imgBackground {
+  width: 60px;
+  height: 60px;
+  opacity: 0.1;
+  position: relative;
+  top: 25px;
+  left: 25px;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+.card img {
+  position: relative;
+  bottom: 13px;
+  left: 45px;
+}
+.card .cardText {
+  position: relative;
+  top: 20px;
+  left: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: 45px;
+}
+.card .cardText .data {
+  color: #282D30;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 0px;
+}
+.card .cardText .category {
+  color: #74798C;
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 5px;
+}
+
+.dashboardContainer {
+  width: 100%;
+}
+
 .firstBottomGraph {
   background-color: #FF0000;
   border-radius: 6px;
@@ -49,6 +96,16 @@ header {
   border-radius: 6px;
   flex: 1;
   flex-basis: 30%;
+}
+
+.sideDashboard {
+  background-color: white;
+  margin-top: 73px;
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 20%;
 }
 
 .thirdBottomGraph {
@@ -78,6 +135,12 @@ header {
 .dashboardHeader h2 {
   font-size: 18px;
   font-weight: 400;
+}
+
+.dashboardMain {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
 }
 
 .mainGraphs {
@@ -181,6 +244,7 @@ aside {
   text-align: center;
   align-items: center;
   height: 100vh;
+  min-height: 768px;
 }
 
 /*# sourceMappingURL=style.css.map */
