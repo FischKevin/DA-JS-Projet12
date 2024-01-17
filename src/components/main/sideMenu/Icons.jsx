@@ -1,4 +1,6 @@
 import React from "react";
+import IconButton from "./IconsButton";
+
 import BikeIcon from "/src/assets/icons/bike.png";
 import FitnessIcon from "/src/assets/icons/fitness.png";
 import SwimIcon from "/src/assets/icons/swim.png";
@@ -8,10 +10,22 @@ function Icons() {
   return (
     <>
       <div className="iconGroup">
-        <img src={YogaIcon} alt="Icone yoga" />
-        <img src={SwimIcon} alt="Icone natation" />
-        <img src={BikeIcon} alt="Icone velo" />
-        <img src={FitnessIcon} alt="Icone fitness" />
+        <IconButton
+          icon={YogaIcon}
+          alt="Icone yoga"
+        />
+        <IconButton
+          icon={SwimIcon}
+          alt="Icone natation"
+        />
+        <IconButton
+          icon={BikeIcon}
+          alt="Icone vélo"
+        />
+        <IconButton
+          icon={FitnessIcon}
+          alt="Icone fitness"
+        />
       </div>
     </>
   );
