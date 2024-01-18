@@ -1,6 +1,7 @@
-import React from 'react';
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Text } from 'recharts';
-import mockData from '/src/mockData.json';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer, Text } from 'recharts';
+import { getUserPerformance } from '/src/apiService';
 
 function customedLabels({ payload, x, y, cx, cy, ...rest }) {
   const customStyle = {
@@ -19,7 +20,28 @@ function customedLabels({ payload, x, y, cx, cy, ...rest }) {
   );
 }
 
-function DashboardSecondBottomGraph() {
+function DashboardSecondBottomGraph({ userId }) {
+  const [performanceData, setPerformanceData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getUserPerformance(userId);
+      if (data && data.data && data.data.data) {
+        const formattedData = data.data.data.map(item => {
+          const categoryName = data.data.kind[item.kind.toString()];
+          return {
+            category: categoryTranslations[categoryName] || categoryName,
+            value: item.value
+          };
+        });
+
+        setPerformanceData(formattedData);
+      }
+    };
+
+    fetchData();
+  }, [userId]);
+
   const categoryTranslations = {
     cardio: "Cardio",
     energy: "Énergie",
@@ -28,14 +50,6 @@ function DashboardSecondBottomGraph() {
     speed: "Vitesse",
     intensity: "Intensité"
   };
-
-  const performanceData = mockData["12"].performance.data.map(item => {
-    const categoryName = mockData["12"].performance.kind[item.kind.toString()];
-    return {
-      category: categoryTranslations[categoryName],
-      value: item.value
-    };
-  });
 
   const orderedCategories = ["Intensité", "Vitesse", "Force", "Endurance", "Énergie", "Cardio"];
   performanceData.sort((a, b) => orderedCategories.indexOf(a.category) - orderedCategories.indexOf(b.category));
@@ -52,11 +66,14 @@ function DashboardSecondBottomGraph() {
             tickMargin={30}
             tick={(props) => customedLabels(props)}
           />
-          <PolarRadiusAxis angle={30} domain={[0, 150]} tick={false} stroke="transparent" />
           <Radar name="Performance" dataKey="value" stroke="#FF0101" fill="#FF0101" fillOpacity={0.7} />
         </RadarChart>
       </ResponsiveContainer>
   );
 }
+
+DashboardSecondBottomGraph.propTypes = {
+  userId: PropTypes.string.isRequired,
+};
 
 export default DashboardSecondBottomGraph;
