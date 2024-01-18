@@ -5,17 +5,14 @@ import {
 } from 'recharts';
 import { getUserActivity } from '/src/apiService';
 
-// const userActivity = mockData["12"].userActivity.sessions;
-
 function DashboardMainTopGraph({ userId }) {
-  console.log('userId dans DashboardMainTopGraph:', userId);
   const [userActivity, setUserActivity] = useState([]);
 
   useEffect(() => {
-    if (!userId) {
-      console.log('userId est indéfini, en attente de la valeur...');
-      return;
-    }
+  if (!userId) {
+    console.log('userId est indéfini, en attente de la valeur...');
+    return;
+  }
     const fetchData = async () => {
       const data = await getUserActivity(userId);
       if (data && data.data && data.data.sessions) {
