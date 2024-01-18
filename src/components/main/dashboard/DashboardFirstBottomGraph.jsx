@@ -1,9 +1,35 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';import PropTypes from 'prop-types';
 import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer, Rectangle } from 'recharts';
-import mockData from '/src/mockData.json';
+import { getUserAverageSessions } from '/src/apiService';
 
-function DashboardFirstBottomGraph() {
+function DashboardFirstBottomGraph({ userId }) {
+  const [averageSessionsData, setAverageSessionsData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getUserAverageSessions(userId);
+      if (data && data.data && data.data.sessions) {
+        const sessions = data.data.sessions.map(session => ({
+          dayNumber: session.day, 
+          sessionLength: session.sessionLength
+        }));
+  
+        const startValue = sessions[0].sessionLength;
+        const endValue = sessions[sessions.length - 1].sessionLength;
+        const averageSessionsDataWithPadding = [
+          { dayNumber: 'Start', sessionLength: startValue },
+          ...sessions,
+          { dayNumber: 'End', sessionLength: endValue }
+        ];
+  
+        setAverageSessionsData(averageSessionsDataWithPadding);
+      }
+    };
+  
+    fetchData();
+  }, [userId]);
+  
+  
 
 // Convert a day number to a day name
 const daysTranslations = {
@@ -15,24 +41,6 @@ const daysTranslations = {
   6: "S",
   7: "D"
 };
-
-// Get mocked data
-const averageSessionsData = Object.values(mockData["12"].averageSessions.sessions).map(session => {
-  return {
-    dayNumber: session.day,
-    sessionLength: session.sessionLength
-  };
-});
-
-// Get the first and last values to add fictive points
-const LValue = mockData["12"].averageSessions.sessions.find(session => session.day === 1).sessionLength;
-const DValue = mockData["12"].averageSessions.sessions.find(session => session.day === 7).sessionLength;
-
-const averageSessionsDataWithPadding = [
-  { dayNumber: 'Start', sessionLength: LValue },
-  ...averageSessionsData,
-  { dayNumber: 'End', sessionLength: DValue }
-];
 
 // Define the custom tooltip
 const CustomTooltip = ({ active, payload, label }) => {
@@ -107,7 +115,6 @@ const CustomActiveDot = (props) => {
   if (props.payload.dayNumber === 'Start' || props.payload.dayNumber === 'End') {
     return null;
   }
-
   return <circle cx={props.cx} cy={props.cy} r={4} stroke="blue" fill="white" />;
 };
 
@@ -122,10 +129,9 @@ const formatTick = (tickItem) => {
   return daysTranslations[tickItem] || '';
   };
 
-
   return (
       <ResponsiveContainer className="firstBottomGraph" width="1%" height={263}>
-        <AreaChart data={averageSessionsDataWithPadding} margin={{ top: 50, right: -15, left: -15, bottom: 25 }}>
+        <AreaChart data={averageSessionsData} margin={{ top: 50, right: -15, left: -15, bottom: 25 }}>
             <text x="35%" y="40" textAnchor="middle" fill="#fff" fontSize={15} fontWeight="500" opacity={0.5}>
               Durée moyenne <tspan x="31%" dy="20">des sessions</tspan>
             </text>
@@ -159,5 +165,8 @@ const formatTick = (tickItem) => {
   );
 }
 
+DashboardFirstBottomGraph.propTypes = {
+  userId: PropTypes.string.isRequired,
+};
 
 export default DashboardFirstBottomGraph;
