@@ -1,10 +1,21 @@
-// Dashboard.jsx ou le composant parent où vous souhaitez afficher les cartes
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Card from './Card';
-import mockData from '/src/mockData.json';
+import { getUserData } from '/src/apiService';
 
-function DashboardSideGraphs() {
-  const keyData = mockData["12"].userInfo.keyData;
+function DashboardSideGraphs({ userId }) {
+  const [keyData, setKeyData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getUserData(userId);
+      if (data && data.data && data.data.keyData) {
+        setKeyData(data.data.keyData);
+      }
+    };
+
+    fetchData();
+  }, [userId]);
 
   const getBackgroundColor = (category) => {
     switch (category) {
@@ -20,6 +31,10 @@ function DashboardSideGraphs() {
         return "#FFFFFF";
     }
   };
+
+  if (!keyData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="sideDashboard">
@@ -50,5 +65,9 @@ function DashboardSideGraphs() {
     </div>
   );
 }
+
+DashboardSideGraphs.propTypes = {
+  userId: PropTypes.string.isRequired,
+};
 
 export default DashboardSideGraphs;
