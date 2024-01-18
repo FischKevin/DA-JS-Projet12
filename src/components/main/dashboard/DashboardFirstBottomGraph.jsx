@@ -103,11 +103,11 @@ CustomCursor.propTypes = {
 
 // Define the custom active dot
 const CustomActiveDot = (props) => {
-  if (props.payload.day === 'Start' || props.payload.day === 'End') {
-    // Nothing to display for the fictive points
+  // Check if the dot is the fictive point
+  if (props.payload.dayNumber === 'Start' || props.payload.dayNumber === 'End') {
     return null;
   }
-  // Show a blue dot for the other points
+
   return <circle cx={props.cx} cy={props.cy} r={4} stroke="blue" fill="white" />;
 };
 
@@ -125,7 +125,7 @@ const formatTick = (tickItem) => {
 
   return (
       <ResponsiveContainer className="firstBottomGraph" width="1%" height={263}>
-        <AreaChart data={averageSessionsDataWithPadding} margin={{ top: 50, right: 0, left: 0, bottom: 25 }}>
+        <AreaChart data={averageSessionsDataWithPadding} margin={{ top: 50, right: -15, left: -15, bottom: 25 }}>
             <text x="35%" y="40" textAnchor="middle" fill="#fff" fontSize={15} fontWeight="500" opacity={0.5}>
               Durée moyenne <tspan x="31%" dy="20">des sessions</tspan>
             </text>
