@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, Scatter, ReferenceLine
 } from 'recharts';
-import mockData from '/src/mockData.json';
+import { getUserActivity } from '/src/apiService';
 
-const userActivity = mockData["12"].userActivity.sessions;
+// const userActivity = mockData["12"].userActivity.sessions;
+
+function DashboardMainTopGraph({ userId }) {
+  console.log('userId dans DashboardMainTopGraph:', userId);
+  const [userActivity, setUserActivity] = useState([]);
+
+  useEffect(() => {
+    if (!userId) {
+      console.log('userId est indéfini, en attente de la valeur...');
+      return;
+    }
+    const fetchData = async () => {
+      const data = await getUserActivity(userId);
+      if (data && data.data && data.data.sessions) {
+        setUserActivity(data.data.sessions);
+      }
+    };
+    fetchData();
+  }, [userId]);
 
 // Transform the data to fit the chart
 const dataForChart = userActivity.map((session, index) => ({
@@ -84,7 +102,7 @@ CustomTooltip.propTypes = {
   }))
 };
 
-function DashboardMainTopGraph() {
+
   return (
       <div className='topGraph'>
         <ResponsiveContainer  width="95%" height={180} style={{ margin: '0 auto' }}>
@@ -113,5 +131,9 @@ function DashboardMainTopGraph() {
       </div>
   );
 }
+
+DashboardMainTopGraph.propTypes = {
+  userId: PropTypes.string.isRequired,
+};
 
 export default DashboardMainTopGraph;

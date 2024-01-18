@@ -34,6 +34,34 @@ header {
   font-weight: 500;
 }
 
+.login-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 10vh;
+}
+
+.user-card {
+  text-align: center;
+}
+.user-card a {
+  text-decoration: none;
+}
+.user-card a img {
+  height: 128px;
+  width: 128px;
+  border-radius: 50%;
+  object-fit: cover;
+  text-align: center;
+}
+.user-card a p {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+}
+
 .mainContainer {
   display: flex;
 }
@@ -239,7 +267,7 @@ aside .iconGroup .iconButton {
 aside {
   display: flex;
   flex-direction: column;
-  width: 117px;
+  min-width: 117px;
   background-color: black;
   text-align: center;
   align-items: center;

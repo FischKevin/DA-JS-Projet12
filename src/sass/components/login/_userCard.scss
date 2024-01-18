@@ -1,0 +1,23 @@
+.user-card {
+  text-align: center;
+
+  a{
+    text-decoration: none;
+
+    img {
+      height: 128px;
+      width: 128px;
+      border-radius: 50%;
+      object-fit: cover;
+      text-align: center;
+    }
+  
+    p {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0;
+      padding: 0;
+  
+    }
+  }
+}
