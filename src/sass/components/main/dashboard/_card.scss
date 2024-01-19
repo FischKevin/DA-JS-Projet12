@@ -2,6 +2,12 @@
   background-color: #FBFBFB;
   display: flex;
   border-radius: 6px;
+  width: 235px;
+
+  @media (max-width: 1280px) {
+    min-width: 235px;
+    width: 48%;
+  }
 
   .imgBackground {
     width: 60px;

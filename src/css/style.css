@@ -6,7 +6,7 @@ html {
 html body {
   min-width: 1024px;
   width: 100vw;
-  min-height: 768px;
+  min-height: 780px;
   margin: 0;
 }
 
@@ -15,6 +15,7 @@ header {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
   display: flex;
   align-items: center;
+  height: 88px;
 }
 
 .logo {
@@ -70,6 +71,13 @@ header {
   background-color: #FBFBFB;
   display: flex;
   border-radius: 6px;
+  width: 235px;
+}
+@media (max-width: 1280px) {
+  .card {
+    min-width: 235px;
+    width: 48%;
+  }
 }
 .card .imgBackground {
   width: 60px;
@@ -130,10 +138,23 @@ header {
   background-color: white;
   margin-top: 73px;
   margin-left: 30px;
+  margin-right: clamp(0px, 5%, 70px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 20%;
+  margin-bottom: 20px;
+}
+@media (max-width: 1280px) {
+  .sideDashboard {
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 15px;
+    width: 95%;
+    margin-left: 30px;
+    margin-top: 0px;
+    column-gap: 3%;
+  }
 }
 
 .thirdBottomGraph {
@@ -149,7 +170,16 @@ header {
 }
 
 .dashboardHeader {
-  margin: 40px 0 0 90px;
+  margin-top: 40px;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: clamp(15px, 5%, 70px);
+}
+@media (max-width: 1280px) {
+  .dashboardHeader {
+    margin-top: 0px;
+    margin-left: 30px;
+  }
 }
 .dashboardHeader h1 {
   color: black;
@@ -168,13 +198,28 @@ header {
 .dashboardMain {
   display: flex;
   flex-direction: row;
-  width: 90%;
+  width: 100%;
+  max-width: 1440px;
+}
+@media (max-width: 1280px) {
+  .dashboardMain {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .mainGraphs {
-  margin-left: 90px;
+  margin-left: clamp(15px, 5%, 70px);
   margin-top: 60px;
-  width: 817px;
+  width: 80%;
+}
+@media (max-width: 1280px) {
+  .mainGraphs {
+    margin-left: 30px;
+    margin-top: 0px;
+    width: 95%;
+    margin-right: 30px;
+  }
 }
 
 .bottomGraphs {
@@ -183,6 +228,7 @@ header {
   justify-content: space-between;
   gap: 3%;
   margin-top: 30px;
+  margin-bottom: 20px;
   height: 263px;
 }
 
@@ -235,10 +281,12 @@ header {
 
 .mainContainer aside p {
   color: white;
-  position: absolute;
-  bottom: 30px;
+  position: relative;
+  top: 85%;
   rotate: 270deg;
   width: 182px;
+  margin: 0;
+  padding: 0;
 }
 
 aside .iconGroup {
@@ -267,12 +315,10 @@ aside .iconGroup .iconButton {
 aside {
   display: flex;
   flex-direction: column;
-  min-width: 117px;
+  width: 117px;
   background-color: black;
   text-align: center;
   align-items: center;
-  height: 100vh;
-  min-height: 768px;
 }
 
 /*# sourceMappingURL=style.css.map */
