@@ -10,6 +10,50 @@ html body {
   margin: 0;
 }
 
+.error-content {
+  margin-bottom: 110px;
+  text-align: center;
+}
+
+.title404 {
+  font-size: 288px;
+  font-weight: 700;
+  margin: 60px 0;
+}
+@media (max-width: 600px) {
+  .title404 {
+    font-size: 190px;
+  }
+}
+@media (max-width: 400px) {
+  .title404 {
+    font-size: 96px;
+    margin: 60px 0 70px 0;
+  }
+}
+
+.text404 {
+  font-size: 36px;
+  font-weight: 500;
+  margin: 0 10px 120px 10px;
+}
+@media (max-width: 400px) {
+  .text404 {
+    font-size: 18px;
+    margin: 0 10px 90px 10px;
+  }
+}
+
+.link404 {
+  font-size: 18px;
+  font-weight: 500;
+}
+@media (max-width: 400px) {
+  .link404 {
+    font-size: 14px;
+  }
+}
+
 header {
   background-color: black;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
@@ -43,11 +87,16 @@ header {
   margin-top: 10vh;
 }
 
+h1 {
+  text-align: center;
+}
+
 .user-card {
   text-align: center;
 }
 .user-card a {
   text-decoration: none;
+  color: black;
 }
 .user-card a img {
   height: 128px;
@@ -58,9 +107,9 @@ header {
 }
 .user-card a p {
   font-size: 1.5rem;
-  font-weight: 700;
   margin: 0;
   padding: 0;
+  font-weight: 500;
 }
 
 .mainContainer {
