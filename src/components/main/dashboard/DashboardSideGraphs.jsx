@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import Card from './Card';
 import { getUserData } from '/src/apiService';
 
+import Calories from '/src/assets/icons/cards/calories.png';
+import Proteines from '/src/assets/icons/cards/proteines.png';
+import Glucides from '/src/assets/icons/cards/glucides.png';
+import Lipides from '/src/assets/icons/cards/lipides.png';
+
 function DashboardSideGraphs({ userId }) {
   const [keyData, setKeyData] = useState(null);
 
@@ -39,25 +44,25 @@ function DashboardSideGraphs({ userId }) {
   return (
     <div className="sideDashboard">
       <Card
-        imageUrl="/src/assets/icons/cards/calories.png"
+        imageUrl={Calories}
         data={`${keyData.calorieCount}kCal`}
         category="Calories"
         backgroundColor={getBackgroundColor("Calories")}
       />
       <Card
-        imageUrl="/src/assets/icons/cards/proteines.png"
+        imageUrl={Proteines}
         data={`${keyData.proteinCount}g`}
         category="Protéines"
         backgroundColor={getBackgroundColor("Protéines")}
       />
       <Card
-        imageUrl="/src/assets/icons/cards/glucides.png"
+        imageUrl={Glucides}
         data={`${keyData.carbohydrateCount}g`}
         category="Glucides"
         backgroundColor={getBackgroundColor("Glucides")}
       />
       <Card
-        imageUrl="/src/assets/icons/cards/lipides.png"
+        imageUrl={Lipides}
         data={`${keyData.lipidCount}g`}
         category="Lipides"
         backgroundColor={getBackgroundColor("Lipides")}
