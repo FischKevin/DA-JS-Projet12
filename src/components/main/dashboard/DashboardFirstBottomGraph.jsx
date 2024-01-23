@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';import PropTypes from 'prop-types';
 import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer, Rectangle } from 'recharts';
-import { getUserAverageSessions } from '/src/apiService';
+import { getUserAverageSessions } from '/src/services/apiService';
 
 function DashboardFirstBottomGraph({ userId }) {
   const [averageSessionsData, setAverageSessionsData] = useState([]);

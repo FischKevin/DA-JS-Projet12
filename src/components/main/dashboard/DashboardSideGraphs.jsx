@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Card from './Card';
-import { getUserData } from '/src/apiService';
+import { getUserData } from '/src/services/apiService';
 
 import Calories from '/src/assets/icons/cards/calories.png';
 import Proteines from '/src/assets/icons/cards/proteines.png';

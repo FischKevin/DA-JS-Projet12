@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { RadialBarChart, RadialBar, PolarAngleAxis, ResponsiveContainer } from 'recharts';
-import { getUserData } from '/src/apiService';
+import { getUserData } from '/src/services/apiService';
 
 function DashboardThirdBottomGraph({ userId }) {
 

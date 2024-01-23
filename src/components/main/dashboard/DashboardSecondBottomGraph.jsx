@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer, Text } from 'recharts';
-import { getUserPerformance } from '/src/apiService';
+import { getUserPerformance } from '/src/services/apiService';
 
 function customedLabels({ payload, x, y, cx, cy, ...rest }) {
   const customStyle = {

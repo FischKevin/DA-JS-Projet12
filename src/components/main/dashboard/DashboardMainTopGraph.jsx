@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, Scatter, ReferenceLine
 } from 'recharts';
-import { getUserActivity } from '/src/apiService';
+import { getUserActivity } from '/src/services/apiService';
 
 function DashboardMainTopGraph({ userId }) {
   const [userActivity, setUserActivity] = useState([]);
