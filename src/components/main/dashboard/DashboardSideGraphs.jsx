@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Card from './Card';
-import { getUserData } from '/src/services/apiService';
+import { UserDataModel } from '/src/services/userDataModel';
 
 import Calories from '/src/assets/icons/cards/calories.png';
 import Proteines from '/src/assets/icons/cards/proteines.png';
@@ -10,17 +10,19 @@ import Lipides from '/src/assets/icons/cards/lipides.png';
 
 function DashboardSideGraphs({ userId }) {
   const [keyData, setKeyData] = useState(null);
+  const userDataModel = new UserDataModel();
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getUserData(userId);
-      if (data && data.data && data.data.keyData) {
-        setKeyData(data.data.keyData);
+      const data = await userDataModel.getUserInfo(userId);
+      if (data && data.keyData) {
+        setKeyData(data.keyData);
       }
     };
-
+  
     fetchData();
   }, [userId]);
+  
 
   const getBackgroundColor = (category) => {
     switch (category) {

@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { RadialBarChart, RadialBar, PolarAngleAxis, ResponsiveContainer } from 'recharts';
-import { getUserData } from '/src/services/apiService';
+import { UserDataModel } from '/src/services/userDataModel';
 
 function DashboardThirdBottomGraph({ userId }) {
-
   const [userScore, setUserScore] = useState(null);
+  const userDataModel = new UserDataModel();
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getUserData(userId);
-      if (data && data.data) {
-        const score = data.data.score || data.data.todayScore;
+      const userData = await userDataModel.getUserInfo(userId);
+      if (userData && userData.todayScore) {
+        const score = userData.todayScore;
+        setUserScore(score * 100);
+      }
+      else if (userData && userData.score) {
+        const score = userData.score;
         setUserScore(score * 100);
       }
     };

@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from 'react';import PropTypes from 'prop-types';
-import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer, Rectangle } from 'recharts';
-import { getUserAverageSessions } from '/src/services/apiService';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import {
+  AreaChart, Area, XAxis, Tooltip, ResponsiveContainer, Rectangle
+} from 'recharts';
+import { UserDataModel } from '/src/services/userDataModel';
 
 function DashboardFirstBottomGraph({ userId }) {
   const [averageSessionsData, setAverageSessionsData] = useState([]);
+  const userDataModel = new UserDataModel();
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getUserAverageSessions(userId);
+      const data = await userDataModel.getUserAverageSessions(userId);
       if (data && data.data && data.data.sessions) {
         const sessions = data.data.sessions.map(session => ({
           dayNumber: session.day, 

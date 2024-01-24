@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// functon to render the 404 error page
+// function to render the 404 error page
 function Error404() {
   return (
     <>

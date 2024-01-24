@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer, Text } from 'recharts';
-import { getUserPerformance } from '/src/services/apiService';
+import { UserDataModel } from '/src/services/userDataModel';
 
 function customedLabels({ payload, x, y, cx, cy, ...rest }) {
   const customStyle = {
@@ -22,10 +22,11 @@ function customedLabels({ payload, x, y, cx, cy, ...rest }) {
 
 function DashboardSecondBottomGraph({ userId }) {
   const [performanceData, setPerformanceData] = useState([]);
+  const userDataModel = new UserDataModel();
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getUserPerformance(userId);
+      const data = await userDataModel.getUserPerformance(userId);
       if (data && data.data && data.data.data) {
         const formattedData = data.data.data.map(item => {
           const categoryName = data.data.kind[item.kind.toString()];

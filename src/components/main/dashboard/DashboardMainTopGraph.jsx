@@ -3,20 +3,17 @@ import PropTypes from 'prop-types';
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, Scatter, ReferenceLine
 } from 'recharts';
-import { getUserActivity } from '/src/services/apiService';
+import { UserDataModel } from '/src/services/userDataModel';
 
 function DashboardMainTopGraph({ userId }) {
   const [userActivity, setUserActivity] = useState([]);
+  const userDataModel = new UserDataModel();
 
   useEffect(() => {
-  if (!userId) {
-    console.log('userId est indéfini, en attente de la valeur...');
-    return;
-  }
     const fetchData = async () => {
-      const data = await getUserActivity(userId);
-      if (data && data.data && data.data.sessions) {
-        setUserActivity(data.data.sessions);
+      const userData = await userDataModel.getUserActivity(userId);
+      if (userData && userData.data && userData.data.sessions) {
+        setUserActivity(userData.data.sessions);
       }
     };
     fetchData();
