@@ -5,10 +5,12 @@ import DashboardMain from './DashboardMain';
 
 // function to render the dashboard
 function Dashboard() {
-  const { userId } = useParams(); // Récupère l'ID de l'utilisateur depuis l'URL
+  const { userId } = useParams(); // Retrieving the user's ID from the URL parameter
   return (
     <div className='dashboardContainer'>
+      {/* DashboardHeader component, passing the userId as a prop */}
       <DashboardHeader userId={userId} />
+      {/* DashboardMain component, passing the userId as a prop */}
       <DashboardMain userId={userId} />
     </div>
   );

@@ -3,16 +3,19 @@ import PropTypes from 'prop-types';
 import { RadialBarChart, RadialBar, PolarAngleAxis, ResponsiveContainer } from 'recharts';
 import { UserDataModel } from '/src/services/userDataModel';
 
+// Component for displaying the user's score in a radial bar chart
 function DashboardThirdBottomGraph({ userId }) {
-  const [userScore, setUserScore] = useState(null);
-  const userDataModel = new UserDataModel();
+  const [userScore, setUserScore] = useState(null); // State to hold the user's score
+  const userDataModel = new UserDataModel(); // Instance of UserDataModel to fetch user data
 
+  // useEffect hook to fetch user data when the component mounts or userId changes 
   useEffect(() => {
     const fetchData = async () => {
-      const userData = await userDataModel.getUserInfo(userId);
+      const userData = await userDataModel.getUserInfo(userId); // Fetching user data
+      // Setting the user score based on the data received
       if (userData && userData.todayScore) {
         const score = userData.todayScore;
-        setUserScore(score * 100);
+        setUserScore(score * 100); // Converting score to a percentage
       }
       else if (userData && userData.score) {
         const score = userData.score;
@@ -23,9 +26,8 @@ function DashboardThirdBottomGraph({ userId }) {
     fetchData();
   }, [userId]);
 
-// Create the data for the graph
+// Preparing the data for the RadialBarChart
 const data = userScore ? [{ name: 'Score', value: userScore, fill: '#FF0000' }] : [];
-
 const displayScore = data.length > 0 ? `${data[0].value.toFixed(0)}%` : "0%";
 
 return (

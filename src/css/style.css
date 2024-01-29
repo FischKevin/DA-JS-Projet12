@@ -1,5 +1,5 @@
 html {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   display: flex;
   justify-content: center;
 }
@@ -117,7 +117,7 @@ header {
 }
 
 .card {
-  background-color: #FBFBFB;
+  background-color: #fbfbfb;
   display: flex;
   border-radius: 6px;
   width: 235px;
@@ -153,13 +153,13 @@ header {
   margin-bottom: 45px;
 }
 .card .cardText .data {
-  color: #282D30;
+  color: #282d30;
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 0px;
 }
 .card .cardText .category {
-  color: #74798C;
+  color: #74798c;
   font-size: 14px;
   font-weight: 700;
   margin-top: 5px;
@@ -170,14 +170,14 @@ header {
 }
 
 .firstBottomGraph {
-  background-color: #FF0000;
+  background-color: #ff0000;
   border-radius: 6px;
   flex: 1;
   flex-basis: 30%;
 }
 
 .secondBottomGraph {
-  background-color: #282D30;
+  background-color: #282d30;
   border-radius: 6px;
   flex: 1;
   flex-basis: 30%;
@@ -207,7 +207,7 @@ header {
 }
 
 .thirdBottomGraph {
-  background-color: #FBFBFB;
+  background-color: #fbfbfb;
   border-radius: 6px;
   flex: 1;
   flex-basis: 30%;
@@ -237,7 +237,7 @@ header {
   margin-bottom: 25px;
 }
 .dashboardHeader .firstName {
-  color: #FF0101;
+  color: #ff0101;
 }
 .dashboardHeader h2 {
   font-size: 18px;
@@ -283,7 +283,7 @@ header {
 
 .topGraph {
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.0196078431);
-  background-color: #FBFBFB;
+  background-color: #fbfbfb;
   border-radius: 6px;
   height: 320px;
 }
@@ -314,11 +314,11 @@ header {
 .topGraph .recharts-legend-item-text {
   font-size: 14px;
   font-weight: 500;
-  color: #74798C !important;
+  color: #74798c !important;
 }
 .topGraph .topGraphTooltip {
   color: white;
-  background-color: #E60000;
+  background-color: #e60000;
   text-align: center;
   padding: 5px 10px;
   font-size: 12px;

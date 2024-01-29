@@ -3,7 +3,7 @@ import Header from '../header/Header';
 import MainContainer from '../main/MainContainer';
 
 
-// function to render the homepage
+// HomePage component: Renders the homepage of the application
 function HomePage() {
   return (
     <>

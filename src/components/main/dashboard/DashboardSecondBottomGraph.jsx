@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer, Text } from 'recharts';
 import { UserDataModel } from '/src/services/userDataModel';
 
+// Custom label component for the radar chart
 function customedLabels({ payload, x, y, cx, cy, ...rest }) {
   const customStyle = {
-    fontSize: 12,
+    fontSize: 12, // Setting font size for the label
   };
   return (
     <Text
@@ -15,19 +16,21 @@ function customedLabels({ payload, x, y, cx, cy, ...rest }) {
       x={x + (x - cx) / 10}
       style={{ ...rest, ...customStyle }}
     >
-      {payload.value}
+      {payload.value} {/* Displaying label text */}
     </Text>
   );
 }
 
-function DashboardSecondBottomGraph({ userId }) {
-  const [performanceData, setPerformanceData] = useState([]);
-  const userDataModel = new UserDataModel();
+// Component to display the user's performance data in a radar chart
+function DashboardSecondBottomGraph({ userId }) { 
+  const [performanceData, setPerformanceData] = useState([]); // Fetching performance data
+  const userDataModel = new UserDataModel(); // Instance of UserDataModel for data fetching
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await userDataModel.getUserPerformance(userId);
+      const data = await userDataModel.getUserPerformance(userId); // Fetching performance data
       if (data && data.data && data.data.data) {
+        // Formatting and translating performance data
         const formattedData = data.data.data.map(item => {
           const categoryName = data.data.kind[item.kind.toString()];
           return {
@@ -36,13 +39,14 @@ function DashboardSecondBottomGraph({ userId }) {
           };
         });
 
-        setPerformanceData(formattedData);
+        setPerformanceData(formattedData); // Setting the formatted data to state
       }
     };
 
     fetchData();
   }, [userId]);
 
+  // Translation mapping for performance categories
   const categoryTranslations = {
     cardio: "Cardio",
     energy: "Énergie",
@@ -52,6 +56,7 @@ function DashboardSecondBottomGraph({ userId }) {
     intensity: "Intensité"
   };
 
+  // Sorting the performance data based on a predefined order
   const orderedCategories = ["Intensité", "Vitesse", "Force", "Endurance", "Énergie", "Cardio"];
   performanceData.sort((a, b) => orderedCategories.indexOf(a.category) - orderedCategories.indexOf(b.category));
 
@@ -65,7 +70,7 @@ function DashboardSecondBottomGraph({ userId }) {
             fontSize={12} 
             tickLine={false} 
             tickMargin={30}
-            tick={(props) => customedLabels(props)}
+            tick={(props) => customedLabels(props)} // Using custom labels for the axis
           />
           <Radar name="Performance" dataKey="value" stroke="#FF0101" fill="#FF0101" fillOpacity={0.7} />
         </RadarChart>

@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import DashboardMainGraphs from './DashboardMainGraphs';
 import DashboardSideGraphs from './DashboardSideGraphs';
 
-
-// function to render the dashboard
+// DashboardMain component: Renders the main content area of the dashboard
 function DashboardMain({userId}) {
   return (
     <div className='dashboardMain'>
-      <DashboardMainGraphs userId={userId} />      
+      {/* DashboardMainGraphs component - handles the rendering of main graph sections */}
+      <DashboardMainGraphs userId={userId} />  
+      {/* DashboardSideGraphs component - handles the rendering of side graph sections */}    
       <DashboardSideGraphs userId={userId} />
     </div>
   );

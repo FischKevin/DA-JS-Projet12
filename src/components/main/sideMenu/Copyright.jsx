@@ -1,5 +1,6 @@
 import React from "react";
 
+// Copyright component: Displays the copyright notice
 function Copyright() {
   return (
     <>

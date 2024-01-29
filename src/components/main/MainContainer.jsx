@@ -2,7 +2,7 @@ import React from 'react';
 import SideMenu from './sideMenu/SideMenu';
 import Dashboard from './dashboard/Dashboard';
 
-// function to render the main container with side menu and dashboard
+// MainContainer component: Renders the main section of the application
 function MainContainer() {
   return (
     <>

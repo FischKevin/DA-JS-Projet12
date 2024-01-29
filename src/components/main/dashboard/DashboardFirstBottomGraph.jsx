@@ -5,17 +5,18 @@ import {
 } from 'recharts';
 import { UserDataModel } from '/src/services/userDataModel';
 
+// Component for displaying the first bottom graph of the dashboard
 function DashboardFirstBottomGraph({ userId }) {
-  const [averageSessionsData, setAverageSessionsData] = useState([]);
-  const userDataModel = new UserDataModel();
+  const [averageSessionsData, setAverageSessionsData] = useState([]); // State to store average session data
+  const userDataModel = new UserDataModel(); // Instance of UserDataModel for fetching data
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await userDataModel.getUserAverageSessions(userId);
+      const data = await userDataModel.getUserAverageSessions(userId); // Fetching average session data
       if (data && data.data && data.data.sessions) {
         const sessions = data.data.sessions.map(session => ({
           dayNumber: session.day, 
-          sessionLength: session.sessionLength
+          sessionLength: session.sessionLength                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
         }));
   
         const startValue = sessions[0].sessionLength;

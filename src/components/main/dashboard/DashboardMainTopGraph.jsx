@@ -5,39 +5,40 @@ import {
 } from 'recharts';
 import { UserDataModel } from '/src/services/userDataModel';
 
+// Component for displaying the main top graph of the dashboard
 function DashboardMainTopGraph({ userId }) {
-  const [userActivity, setUserActivity] = useState([]);
-  const userDataModel = new UserDataModel();
+  const [userActivity, setUserActivity] = useState([]); // State to store user activity data
+  const userDataModel = new UserDataModel(); // Instance of UserDataModel for fetching data
 
   useEffect(() => {
     const fetchData = async () => {
-      const userData = await userDataModel.getUserActivity(userId);
+      const userData = await userDataModel.getUserActivity(userId); // Fetching user activity data
       if (userData && userData.data && userData.data.sessions) {
-        setUserActivity(userData.data.sessions);
+        setUserActivity(userData.data.sessions); // Setting user activity data in state
       }
     };
     fetchData();
   }, [userId]);
 
-// Transform the data to fit the chart
+// Transforming data for the chart
 const dataForChart = userActivity.map((session, index) => ({
   day: index + 1, // Sequential day number
   kilogram: session.kilogram,
   calories: session.calories
 }));
 
-// Function to calculate the ticks for the Y axis
+// Calculating ticks for the Y axis
 const calculateTicks = (min, max) => {
   const mid = (min + max) / 2;
   return [min, mid, max];
 };
 
-// Get the min and max values for the Y axis
+// Getting min and max values for the Y axis
 const minPoids = Math.min(...dataForChart.map(item => item.kilogram)) - 1;
 const maxPoids = Math.max(...dataForChart.map(item => item.kilogram)) + 1;
 const yAxisTicks = calculateTicks(minPoids, maxPoids);
 
-// Custom tick component
+// Custom X axis tick component
 const CustomTickXAxis = (props) => {
   const { x, y, payload } = props;
 
@@ -56,7 +57,7 @@ CustomTickXAxis.propTypes = {
   payload: PropTypes.object,
 };
 
-// Custom tick component
+// Custom Y axis tick component
 const CustomTickYAxis = (props) => {
   const { x, y, payload } = props;
 
@@ -75,7 +76,7 @@ CustomTickYAxis.propTypes = {
   payload: PropTypes.object,
 };
 
-// Custom tooltip component
+// Custom tooltip component for the chart
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     return (
@@ -96,7 +97,7 @@ CustomTooltip.propTypes = {
   }))
 };
 
-
+// Main render method for the dashboard's top graph
   return (
       <div className='topGraph'>
         <ResponsiveContainer  width="95%" height={180} style={{ margin: '0 auto' }}>
@@ -111,6 +112,7 @@ CustomTooltip.propTypes = {
               stroke="#ccc"
             />
           ))}
+            {/* Setting up X and Y axes with custom ticks */}
             <XAxis dataKey="day" tick={<CustomTickXAxis />} tickLine={false} />
             <YAxis yAxisId="left" orientation="left" hide={true} />
             <YAxis yAxisId="right" orientation="right" stroke="#282D30" domain={[minPoids, maxPoids]} ticks={yAxisTicks} tick={<CustomTickYAxis />} tickLine={false} />

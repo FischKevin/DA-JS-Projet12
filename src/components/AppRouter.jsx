@@ -4,14 +4,15 @@ import HomePage from './page/HomePage';
 import LoginPage from './page/LoginPage';
 import Error404 from './page/Error404';
 
+// AppRouter component: Manages the routing of the application
 function AppRouter() {
   return (
     <Routes>
-      {/* Route for the homepage. */}
+      {/* Define Route for the homepage */}
       <Route path="/" element={<LoginPage />} />
-      {/* Route for the "APropos" page. */}
+      {/* Route for the "Dashboard" page :userId will be a variable part of the URL */}
       <Route path="/dashboard/:userId" element={<HomePage />} />
-      {/* Route for the 404 page. */}
+      {/* Catch-all Route for undefined paths, leading to a 404 error page */}
       <Route path="*" element={<Error404 />} />
     </Routes>
   );
