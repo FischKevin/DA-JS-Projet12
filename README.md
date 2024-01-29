@@ -35,3 +35,10 @@ To use with Sass :
 ```
 sass --watch src/sass/main.scss src/css/style.css
 ```
+
+## Launch the backend
+Clone this repository : https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard
+```
+cd P9-front-end-dashboard
+yarn dev
+```
