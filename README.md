@@ -5,7 +5,7 @@ Project 12 from JavaScript React developper path at OpenClassrooms
 https://da-js-projet12.vercel.app
 
 # Develop an analytics dashboard with React
-![Sans titre-1](https://github.com/FischKevin/DA-JS-Projet11/assets/53255309/32e7172b-7c89-47e7-bb43-c2cf5d2742f4)
+![Sans titre-5](https://github.com/FischKevin/DA-JS-Projet12/assets/53255309/40576378-3658-4f14-8324-966b79ca0f3d)
 
 ## Figma Link
 https://www.figma.com/file/BMomGVZqLZb811mDMShpLu/UI-design-Sportify-FR?node-id=0%3A1
