@@ -1,9 +1,11 @@
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 export class ApiDataService {
   // Method to get basic user data
   async getUserData(userId) {
     try {
       // Fetching user data from the API
-      const response = await fetch(`http://localhost:3000/user/${userId}`);
+      const response = await fetch(`${API_BASE_URL}/user/${userId}`);
       if (!response.ok) {
         throw new Error('Unable to fetch user data from API');
       }
@@ -19,9 +21,7 @@ export class ApiDataService {
   async getUserActivity(userId) {
     try {
       // Fetching user activity data from the API
-      const response = await fetch(
-        `http://localhost:3000/user/${userId}/activity`,
-      );
+      const response = await fetch(`${API_BASE_URL}/user/${userId}/activity`);
       if (!response.ok) {
         throw new Error('Error while retrieving activity data from API');
       }
@@ -38,7 +38,7 @@ export class ApiDataService {
     try {
       // Fetching user average session data from the API
       const response = await fetch(
-        `http://localhost:3000/user/${userId}/average-sessions`,
+        `${API_BASE_URL}/user/${userId}/average-sessions`,
       );
       if (!response.ok) {
         throw new Error('Error while retrieving average session data from API');
@@ -59,7 +59,7 @@ export class ApiDataService {
     try {
       // Fetching user performance data from the API
       const response = await fetch(
-        `http://localhost:3000/user/${userId}/performance`,
+        `${API_BASE_URL}/user/${userId}/performance`,
       );
       if (!response.ok) {
         throw new Error('Error while retrieving performance data from API');
