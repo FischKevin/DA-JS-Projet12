@@ -28,7 +28,7 @@ This project is a React-based web application that utilizes an API to display us
 git clone https://github.com/FischKevin/DA-JS-Projet12.git
 cd DA-JS-Projet12
 npm install
-npm start
+npm run dev
 ```
 
 To use with Sass : 
