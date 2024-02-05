@@ -4,19 +4,17 @@ import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer, Text
 import { UserDataModel } from '/src/services/userDataModel';
 
 // Custom label component for the radar chart
-function customedLabels({ payload, x, y, cx, cy, ...rest }) {
-  const customStyle = {
-    fontSize: 12, // Setting font size for the label
-  };
+function customedLabels({ payload, x, y, cx, cy }) {
   return (
     <Text
-      {...rest}
-      verticalAnchor='middle'
-      y={y + (y - cy) / 10}
-      x={x + (x - cx) / 10}
-      style={{ ...rest, ...customStyle }}
+      y={y + (y - cy) /10 }
+      x={x + (x - cx) /3 }
+      fill="#fff" // White color
+      fontSize="12" // Font size
+      textAnchor="middle"
+      dominantBaseline="central"
     >
-      {payload.value} {/* Displaying label text */}
+      {payload.value}
     </Text>
   );
 }
